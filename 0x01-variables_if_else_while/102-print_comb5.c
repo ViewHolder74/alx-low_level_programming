@@ -1,31 +1,45 @@
 #include <stdio.h>
-#include <stdlib.h>
+
 /**
- * main - Program that prints all two two-digit numbers
- * Return: 0
+ * main - Entry point
+ *
+ * Return: Always 0 for success
  */
 int main(void)
 {
-	int i;
-	int j;
+	int i, j, k, l;
 
-	for (i = 0; i <= 99; i++)
+	i = 48;
+	while (i < 58)
 	{
-		for (j = i; j <= 99; j++)
+		j = 48;
+		while (j < 58)
 		{
-			if (i == j)
-				continue;
-			putchar(i / 10 + '0');
-			putchar(i % 10 + '0');
-			putchar(' ');
-			putchar(j / 10 + '0');
-			putchar(j % 10 + '0');
-			if (i != 99 || j != 98)
+			k = i;
+			while (k < 58)
 			{
-				putchar(',');
-				putchar(' ');
+				if (i == k)
+					l = j + 1;
+				else
+					l = 48;
+				while (l < 58)
+				{
+					putchar(i);
+					putchar(j);
+					putchar(' ');
+					putchar(k);
+					putchar(l);
+					if (i == 57 && j == 56 && k == 57 && l == 57)
+						break;
+					putchar(',');
+					putchar(' ');
+					l++;
+				}
+				k++;
 			}
+			j++;
 		}
+		i++;
 	}
 	putchar('\n');
 	return (0);
