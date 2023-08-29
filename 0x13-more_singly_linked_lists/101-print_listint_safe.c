@@ -1,69 +1,68 @@
 #include "lists.h"
 
 /**
- * free_listp - frees a linked list
- * @head: head of a list.
+ * free_listpointer - function that frees a linked list
+ * @head: param
  *
- * Return: no return.
+ * Return: void
  */
-void free_listp(listp_t **head)
+void free_listpointer(listpointer_s **head)
 {
-	listp_t *temp;
-	listp_t *curr;
+	listpointer_s *tmp_ptr;
+	listpointer_s *new_node;
 
 	if (head != NULL)
 	{
-		curr = *head;
-		while ((temp = curr) != NULL)
+		new_node = *head;
+		while ((tmp_ptr = new_node) != NULL)
 		{
-			curr = curr->next;
-			free(temp);
+			new_node = new_node->next;
+			free(tmp_ptr);
 		}
 		*head = NULL;
 	}
+
 }
 
 /**
- * print_listint_safe - prints a linked list.
- * @head: head of a list.
- *
- * Return: number of nodes in the list.
+ * print_listint_safe - function that prints a listint_t linked list.
+ * @head: param
+ * Return: the number of nodes in the list
  */
+
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nnodes = 0;
-	listp_t *hptr, *new, *add;
+	size_t n_node = 0;
+	listpointer_s *head_ptr, *new_n, *next_node;
 
-	hptr = NULL;
-	while (head != NULL)
+	head_ptr = NULL;
+
+	for (; head != NULL; n_node++)
 	{
-		new = malloc(sizeof(listp_t));
-
-		if (new == NULL)
-			exit(98);
-
-		new->p = (void *)head;
-		new->next = hptr;
-		hptr = new;
-
-		add = hptr;
-
-		while (add->next != NULL)
+		new_n = malloc(sizeof(listpointer_s));
+		if (new_n == NULL)
 		{
-			add = add->next;
-			if (head == add->p)
-			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				free_listp(&hptr);
-				return (nnodes);
-			}
+			exit(98);
 		}
+		new_n->p = (void *)head;
+		new_n->next = head_ptr;
+		head_ptr = new_n;
+		for (; next_node->next != NULL; n_node++)
+		{
+			next_node = next_node->next;
+			if (head == next_node->p)
+			{
+				n_node = 1;
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listpointer(&head_ptr);
+				return (n_node);
+			}
 
+		}
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
-		nnodes++;
+		break;
 	}
-
-	free_listp(&hptr);
-	return (nnodes);
+	free_listpointer(&head_ptr);
+	return (n_node);
 }
