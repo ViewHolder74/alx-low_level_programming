@@ -1,4 +1,7 @@
 #include "hash_tables.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 /**
  * hash_table_set - Add element to hash table
@@ -26,7 +29,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	count = index;
 	while (ht->array[count])
 	{
-		if (strcmp(ht->array[i]->key, key) == 0)
+		if (strcmp(ht->array[count]->key, key) == 0)
 		{
 			free(ht->array[count]->value);
 			ht->array[count]->value = tmp;
