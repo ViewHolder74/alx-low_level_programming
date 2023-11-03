@@ -24,7 +24,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 
 	for (new_node = ht->array[index]; new_node != NULL; new_node = new_node->next)
 	{
-		if (strcmp(node->key, key) == 0)
+		if (strcmp(new_node->key, key) == 0)
 			return (new_node->value);
 	}
 
